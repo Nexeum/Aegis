@@ -3,7 +3,7 @@ Check in [**phpservermon**](https://github.com/phpservermon/phpservermon) on git
 
 ## Screenshots
 
-![Servers List](https://github.com/Nexeum/Aegisraw/master/static/screenshots/1.png)
+![Servers List](https://github.com/Nexeum/Aegis/raw/master/static/screenshots/1.png)
 
 ![Servers Edit](https://github.com/Nexeum/Aegis/raw/master/static/screenshots/2.png)
 
