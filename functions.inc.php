@@ -27,7 +27,7 @@
  * Autoload
  *
  */
-function __autoload($class) {
+spl_autoload_register(function ($class) {
 	// first check if a subdir exists for the class
 	// it splits using uppercase chars
 	preg_match_all("/(\P{Lu}+)|(\p{Lu}+\P{Lu}*)/", $class, $subdir_matches);
@@ -52,7 +52,7 @@ function __autoload($class) {
 
 	trigger_error("KERNEL_ERR : Unable to find file:\n\t\t[$file]\n\t associated with class:\n\t\t$class", E_USER_ERROR);
 	return false;
-}
+});
 
 ###############################################
 #
