@@ -32,11 +32,11 @@
 // Prefix used for tables
 define('SM_DB_PREFIX', 'monitor_');
 // Database username
-define('SM_DB_USER', 'db_user');
+define('SM_DB_USER', 'root');
 // Database password
-define('SM_DB_PASS', 'db_pass');
+define('SM_DB_PASS', '');
 // Database name
-define('SM_DB_NAME', 'db_name');
+define('SM_DB_NAME', 'aegis');
 // Database host
 define('SM_DB_HOST', 'localhost');
 
@@ -53,8 +53,9 @@ define('SM_PATH_TPL', 'tpl/');
 define('SM_PATH_CSS', 'inc/');
 define('SM_PATH_JS', 'inc/');
 
-error_reporting(0);
-ini_set('display_errors', 'Off');
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 require 'functions.inc.php';
 $db = new smDatabase();

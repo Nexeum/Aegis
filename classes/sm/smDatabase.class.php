@@ -31,16 +31,22 @@ class smDatabase {
 	protected $num_rows_returned;
 
 	function __construct() {
-		// Initizale connection
-		$this->link = mysql_connect(SM_DB_HOST, SM_DB_USER, SM_DB_PASS);
-
-		if (!mysql_select_db(SM_DB_NAME, $this->link)) {
-			trigger_error(mysql_errno() . ": " . mysql_error());
+		// Initialize connection
+		$this->link = mysqli_connect(SM_DB_HOST, SM_DB_USER, SM_DB_PASS, SM_DB_NAME);
+		
+		if (!$this->link) {
+			trigger_error("Connection error: " . mysqli_connect_errno() . ": " . mysqli_connect_error());
+			exit; // Stop script execution here
 		}
-
+		
+		if (!mysqli_select_db($this->link, SM_DB_NAME)) {
+			trigger_error(mysqli_errno($this->link) . ": " . mysqli_error($this->link));
+			exit; // Stop script execution here
+		}
+		
 		// Setting the utf collection
-		mysql_query("SET NAMES utf8;", $this->getLink());
-  		mysql_query("SET CHARACTER SET 'utf8';", $this->getLink());
+		mysqli_query($this->getLink(), "SET NAMES utf8;");
+		mysqli_query($this->getLink(), "SET CHARACTER SET 'utf8';");
 	}
 
 	/**
@@ -50,32 +56,31 @@ class smDatabase {
 	 * @return resource mysql resource
 	 */
 
-	public function executeQuery($sql) {
-
-		$result = mysql_query($sql, $this->getLink());
-
-		if (mysql_error($this->getLink())) {
-			trigger_error(mysql_errno($this->getLink()) . ': ' . mysql_error($this->getLink()));
+	 public function executeQuery($sql) {
+		$result = mysqli_query($this->getLink(), $sql);
+	
+		if (!$result) {
+			trigger_error(mysqli_errno($this->getLink()) . ': ' . mysqli_error($this->getLink()));
 			return false;
 		}
-
-		if (is_resource($result) && mysql_num_rows($result) > 0) {
+	
+		if (is_object($result) && mysqli_num_rows($result) > 0) {
 			// Rows returned
-			$this->num_rows_returned = mysql_num_rows($result);
-
+			$this->num_rows_returned = mysqli_num_rows($result);
+	
 			// Rows found
-			$result_num_rows_found = $this->fetchResults(mysql_query('SELECT FOUND_ROWS();'));
+			$result_num_rows_found = $this->fetchResults(mysqli_query($this->getLink(), 'SELECT FOUND_ROWS();'));
 			$this->num_rows_found = $result_num_rows_found[0]['FOUND_ROWS()'];
 		}
-
+	
 		if (substr(strtolower(trim($sql)), 0, 6) == 'insert') {
 			// we have an insert
-			$this->last_inserted_id = mysql_insert_id($this->getLink());
+			$this->last_inserted_id = mysqli_insert_id($this->getLink());
 			$result = $this->last_inserted_id;
 		}
-
+	
 		return $result;
-	}
+	}	
 
 	/**
 	 * Exectues query and fetches result
@@ -105,10 +110,10 @@ class smDatabase {
 			return array();
 		}
 
-		$num_rows = mysql_num_rows($result_query);
+		$num_rows = mysqli_num_rows($result_query);
 
 		$result = array();
-		while($record = mysql_fetch_assoc($result_query)) {
+		while($record = mysqli_fetch_assoc($result_query)) {
 			$result[] = $record;
 		}
 
