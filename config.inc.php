@@ -30,15 +30,15 @@
 
 // Database information
 // Prefix used for tables
-define('SM_DB_PREFIX', 'monitor_');
+const SM_DB_PREFIX = 'monitor_';
 // Database username
-define('SM_DB_USER', 'root');
+const SM_DB_USER = 'root';
 // Database password
-define('SM_DB_PASS', '');
+const SM_DB_PASS = '';
 // Database name
-define('SM_DB_NAME', 'aegis');
+const SM_DB_NAME = 'aegis';
 // Database host
-define('SM_DB_HOST', 'localhost');
+const SM_DB_HOST = 'localhost';
 
 ########################################
 #
@@ -49,9 +49,9 @@ define('SM_DB_HOST', 'localhost');
 // Include paths
 // Tell the script where to find the templates, css files and javascript files.
 // If you haven't changed anything to the structure you should leave these unchanged
-define('SM_PATH_TPL', 'tpl/');
-define('SM_PATH_CSS', 'inc/');
-define('SM_PATH_JS', 'inc/');
+const SM_PATH_TPL = 'tpl/';
+const SM_PATH_CSS = 'inc/';
+const SM_PATH_JS = 'inc/';
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -69,4 +69,3 @@ if(!$lang) {
 }
 sm_load_lang($lang);
 
-?>
