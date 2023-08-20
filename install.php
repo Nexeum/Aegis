@@ -37,7 +37,7 @@ $tpl->addCSS('monitor.css', 'install');
 $tpl->newTemplate('install', 'install.tpl.html');
 
 
-if(!is_resource($db->getLink())) {
+if(!is_object($db->getLink())) {
 	// no valid db info
 	$tpl->addTemplatedata(
 		'install',
@@ -146,4 +146,3 @@ foreach($tables as $name => $queries) {
 $tpl->addTemplateDataRepeat('install', 'tables', $result);
 
 echo $tpl->display('install');
-?>

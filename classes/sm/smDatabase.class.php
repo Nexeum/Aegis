@@ -57,6 +57,8 @@ class smDatabase {
 	 */
 
 	 public function executeQuery($sql) {
+		echo "Ejecutando query";
+		echo $sql;
 		$result = mysqli_query($this->getLink(), $sql);
 	
 		if (!$result) {

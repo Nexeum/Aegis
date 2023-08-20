@@ -45,5 +45,3 @@ if(!in_array($type, $allowed_types)) {
 eval('$mod = new mod'.ucfirst($type).'();');
 // let the module prepare it's HTML code
 $mod->createHTML();
-
-?>

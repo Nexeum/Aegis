@@ -1,6 +1,3 @@
->The new version of phpservermon was released, contains new features and improvements. Strongly advise using it.
-Check in [**phpservermon**](https://github.com/phpservermon/phpservermon) on github.
-
 ## Screenshots
 
 ![Servers List](https://github.com/Nexeum/Aegis/raw/master/static/screenshots/1.png)
