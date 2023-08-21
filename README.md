@@ -1,4 +1,5 @@
 ## Screenshots
+Update to php 8.0
 
 ![Servers List](https://github.com/Nexeum/Aegis/raw/master/static/screenshots/1.png)
 
